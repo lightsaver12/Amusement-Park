@@ -5,10 +5,16 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ParkWrite {
-
-	public void report (String temp133) throws IOException {
+	
+	public void report (String temp133) throws IOException, ClassNotFoundException, SQLException {
 		BufferedWriter bw; 
 		File file = new File(ParkConstValue.address);
 		

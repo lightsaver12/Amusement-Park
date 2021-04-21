@@ -1,10 +1,11 @@
 package profyou2;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class ParkMain {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
 		
 		int pass = 0;
 		int ssn = 0;
@@ -19,10 +20,12 @@ public class ParkMain {
 		String date = "";
 		String temp13 = "";
 		String temp133 = "";
+		String [] database;
 		ParkInput parkinput = new ParkInput();
 		ParkRun run = new ParkRun();
 		ParkOutput ot = new ParkOutput();
 		ParkWrite write = new ParkWrite();
+		ParkDatabase pdb = new ParkDatabase();
 		while (true) {
 			pass = parkinput.Pass(); // 주야간 결정
 			ssn = parkinput.Ssn(); // 생일 결정
@@ -44,11 +47,14 @@ public class ParkMain {
 				ot.totalprice2(sum);
 				whether2 = parkinput.Whether2();
 				if (whether2 == 2) {
-					//System.out.println(temp133);
 					break;
 				}
 			}
 		}
-		write.report(temp133);		
+		database = run.ParkData(pass, ssn, amount, preftreat, ticketprice);
+		pdb.Agetypeprice();
+		pdb.Dateprice();
+		pdb.TicketCount();
+		write.report(temp133);	
 	}
 }
